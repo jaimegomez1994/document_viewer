@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from "./Components/Container";
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from,
+} from "@apollo/client"
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 function App() {
+    const link = from([
+  new HttpLink({uri:"https://graphql.sketch.cloud/api/"})
+])
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: link
+})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+
+    <Provider store={store}>
+      <Container/>
+    </Provider>
+    </ApolloProvider>
   );
 }
 
