@@ -41,7 +41,7 @@ const Artboard = () => {
         setCurrentBoard(artboards?.entries[newIndex]);
         setCurrentIndex(newIndex + 1);
     }
-    
+
     return (
         <>
             <Panel
@@ -50,8 +50,13 @@ const Artboard = () => {
                 currentIndex={currentIndex}
                 numberOfBoards={artboards?.entries?.length}
             />
-            <div className="artboard">
-                <img src={currentBoard?.files[1]?.url} alt={currentBoard?.name}></img>
+            <div>
+            </div>
+            <div id="artboard-image"  className="artboard d-flex justify-content-center">
+                <img style={{
+                    maxWidth: `${document?.querySelector('#artboard-image')?.offsetWidth - 70}px`,
+                    maxHeight: `${document?.querySelector('#artboard-image')?.offsetHeight - 70}px`
+                }} src={currentBoard?.files[1]?.url} alt={currentBoard?.name} ></img>
             </div>
         </>
     ) 
