@@ -8,22 +8,24 @@ import { ReactComponent as ArrowLeft } from '../../../assets/arrow-left.svg';
 import { Link } from "react-router-dom";
 
 
-const Panel = () => {
+
+const Panel = ({ currentBoard, updateCurrentBoard, currentIndex,numberOfBoards }) => {
     return (
-        <nav className='d-flex position-fixed w-100 align-items-center'>
+        <nav className='d-flex align-items-center w-100'>
+            <div className='panel-artboard-left d-flex align-items-center'>
+
             <Link to="/">
                 <Close className='mx-3'/>
             </Link>
             <Separator />
-            <ArrowLeft className='ms-3 me-2'/>
-            <div>{"4"}</div>
+            <ArrowLeft onClick={()=>updateCurrentBoard("left")} className='ms-3 me-2' />
+            <div>{currentIndex}</div>
             <Breadcrumb className='mx-1'/>
-            <div>{"4" }</div>
-            <ArrowRight className='mx-2' />
-            {/* <Link to="/"> */}
+            <div>{numberOfBoards}</div>
+            <ArrowRight onClick={()=>updateCurrentBoard("right")} className='mx-2' />
                 
-            <div className='position-absolute w-100 text-center'>something</div>
-             {/* </Link> */}
+            </div>
+            <div className='position-fixed w-100 text-center'>{currentBoard?.name}</div>
        </nav>
     );
 

@@ -3,19 +3,17 @@ import Panel from "./Panel";
 import { useSelector} from "react-redux";
 
 const DocumentViewer = () => {
-    const testRedux = useSelector((state) => state);
+    const artboards = useSelector((state) => state);
     const showData = () => {
-        console.log(testRedux);
+        console.log(artboards);
     }
     
     return (
         <>
             <Panel />
             <div className="document-viewer">
-                {`jaime ${testRedux?.entries?.length>0 &&testRedux.entries[0]}`}
-                <a onClick={()=>showData()}>JAIME 2</a>
                 <div className="row row-cols-5">
-                    {testRedux?.entries?.length>0 && testRedux.entries.map(artboard => {
+                    {artboards?.entries?.length>0 && artboards.entries.map(artboard => {
                         return (
                             <li className="d-flex flex-column justify-content-between my-4">
                                 <Link to={`/artboard/${artboard.identifier}`}>
